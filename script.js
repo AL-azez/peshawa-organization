@@ -1,3 +1,11 @@
+/**
+ * Peshawa Organization - Main JavaScript File
+ * يحتوي على: الترجمة، تفاعلات النموذج، الحركات، والقائمة المتنقلة
+ */
+
+// ==========================================
+// 1. قاموس الترجمة (Translation Dictionary)
+// ==========================================
 const translations = {
     ckb: {
         org_name: "ڕێکخراوی پێشەوا بۆ کاری مرۆیی",
@@ -66,7 +74,7 @@ const translations = {
         about_title: "دەربارەی ڕێکخراوی پێشەوا",
         about_subtitle: "دەزگایەکی خێرخوازی و پەروەردەیی",
         about_heading: "ناوەندێکی زانستی و پەروەردەیی",
-        about_p1: "ڕێکخراوی پێشەوا بۆ کاری مرۆیی لە ١/٩/٢٠٢ دامەزراوە، ناوەندێکی زانستی و پەروەردەییە تایبەت بە فێرکردنی قورئانی پیرۆز و گەشەپێدانی بەهرەی منداڵان و نەوجەوانان.",
+        about_p1: "ڕێکخراوی پێشەوا بۆ کاری مرۆیی لە ١٧/٩/٢٠٢٣ دامەزراوە، ناوەندێکی زانستی و پەروەردەییە تایبەت بە فێرکردنی قورئانی پیرۆز و گەشەپێدانی بەهرەی منداڵان و نەوجەوانان.",
         about_p2: "ئامانجمان پەروەردەکردنی نەوەیەکی قورئانییە کە بتوانێت قورئان بە ڕاستی بخوێنێتەوە و لەبەری بکات، هەروەها فێری مەقامات و تجوید بێت.",
         feat1: "مامۆستایانی شارەزا و پسپۆڕ",
         feat2: "بەرنامەی زانستی و ڕێکخراو",
@@ -160,7 +168,7 @@ const translations = {
         contact_telegram_title: "تێلیگرام",
         contact_facebook_title: "فەیسبووک",
         contact_address_title: "ناونیشان",
-        contact_address: "کەلار و ڕزگاری\nهەرێمی کوردستان",
+        contact_address: "کەلار و ڕزگاري\nهەرێمی کوردستان",
         footer_text: "© 2026 ڕێکخراوی پێشەوا بۆ کاری مرۆیی - هەموو مافەکان پارێزراون"
     },
     ar: {
@@ -331,6 +339,9 @@ const translations = {
 
 let currentLang = 'ckb';
 
+// ==========================================
+// 2. وظائف تبديل اللغة (Language Toggle)
+// ==========================================
 function toggleLanguage() {
     currentLang = currentLang === 'ckb' ? 'ar' : 'ckb';
     document.documentElement.lang = currentLang;
@@ -339,9 +350,7 @@ function toggleLanguage() {
     
     const langBtns = document.querySelectorAll('.lang-btn-header .lang-label');
     langBtns.forEach(btn => {
-        if (btn) {
-            btn.textContent = currentLang === 'ckb' ? 'عربي' : 'کوردی';
-        }
+        if (btn) btn.textContent = currentLang === 'ckb' ? 'عربي' : 'کوردی';
     });
     
     document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -359,131 +368,110 @@ function toggleLanguage() {
 
 function updateSelectOptions() {
     const t = translations[currentLang];
-    const genderSelect = document.getElementById('gender');
-    if (genderSelect) {
-        genderSelect.options[0].textContent = t.select_gender;
-        genderSelect.options[1].textContent = t.gender_male;
-        genderSelect.options[2].textContent = t.gender_female;
-    }
-    const eduSelect = document.getElementById('currentEducation');
-    if (eduSelect) {
-        eduSelect.options[0].textContent = t.select_education;
-        const eduKeys = ['edu_preschool', 'edu_1', 'edu_2', 'edu_3', 'edu_4', 'edu_5', 'edu_6', 'edu_middle', 'edu_high', 'edu_university'];
-        eduKeys.forEach((key, i) => {
-            if (eduSelect.options[i + 1] && t[key]) {
-                eduSelect.options[i + 1].textContent = t[key];
-            }
-        });
-    }
-    const memSelect = document.getElementById('memorizationLevel');
-    if (memSelect) {
-        memSelect.options[0].textContent = t.select_mem;
-        const memKeys = ['mem_0', 'mem_letters', 'mem_q1', 'mem_q2', 'mem_q3', 'mem_start', 'mem_amma', 'mem_1_5', 'mem_5_10', 'mem_10_15', 'mem_15_20', 'mem_20_25', 'mem_25_30', 'mem_complete', 'mem_tajweed', 'mem_ijaza'];
-        memKeys.forEach((key, i) => {
-            if (memSelect.options[i + 1] && t[key]) {
-                memSelect.options[i + 1].textContent = t[key];
-            }
-        });
-    }
-    const readSelect = document.getElementById('readingLevel');
-    if (readSelect) {
-        readSelect.options[0].textContent = t.select_reading;
-        readSelect.options[1].textContent = t.read_beginner;
-        readSelect.options[2].textContent = t.read_intermediate;
-        readSelect.options[3].textContent = t.read_advanced;
-        readSelect.options[4].textContent = t.read_pro;
-    }
-    const relSelect = document.getElementById('parentRelation');
-    if (relSelect) {
-        relSelect.options[0].textContent = t.select_relation;
-        relSelect.options[1].textContent = t.rel_father;
-        relSelect.options[2].textContent = t.rel_mother;
-        relSelect.options[3].textContent = t.rel_guardian;
-    }
-    const branchSelect = document.getElementById('branch');
-    if (branchSelect) {
-        branchSelect.options[0].textContent = t.select_branch;
-        branchSelect.options[1].textContent = t.branch_kalar;
-        branchSelect.options[2].textContent = t.branch_rizgari;
-    }
-    const timeSelect = document.getElementById('preferredTime');
-    if (timeSelect) {
-        timeSelect.options[0].textContent = t.select_time;
-        timeSelect.options[1].textContent = t.time_morning;
-        timeSelect.options[2].textContent = t.time_noon;
-        timeSelect.options[3].textContent = t.time_evening;
-    }
-    const prevSelect = document.getElementById('previousCenter');
-    if (prevSelect) {
-        prevSelect.options[0].textContent = t.prev_no;
-        prevSelect.options[1].textContent = t.prev_yes;
-    }
+    
+    const updateOptions = (id, keys) => {
+        const select = document.getElementById(id);
+        if (select) {
+            keys.forEach((key, i) => {
+                if (select.options[i] && t[key]) {
+                    select.options[i].textContent = t[key];
+                }
+            });
+        }
+    };
+
+    updateOptions('gender', ['select_gender', 'gender_male', 'gender_female']);
+    updateOptions('currentEducation', ['select_education', 'edu_preschool', 'edu_1', 'edu_2', 'edu_3', 'edu_4', 'edu_5', 'edu_6', 'edu_middle', 'edu_high', 'edu_university']);
+    updateOptions('memorizationLevel', ['select_mem', 'mem_0', 'mem_letters', 'mem_q1', 'mem_q2', 'mem_q3', 'mem_start', 'mem_amma', 'mem_1_5', 'mem_5_10', 'mem_10_15', 'mem_15_20', 'mem_20_25', 'mem_25_30', 'mem_complete', 'mem_tajweed', 'mem_ijaza']);
+    updateOptions('readingLevel', ['select_reading', 'read_beginner', 'read_intermediate', 'read_advanced', 'read_pro']);
+    updateOptions('parentRelation', ['select_relation', 'rel_father', 'rel_mother', 'rel_guardian']);
+    updateOptions('branch', ['select_branch', 'branch_kalar', 'branch_rizgari']);
+    updateOptions('preferredTime', ['select_time', 'time_morning', 'time_noon', 'time_evening']);
+    updateOptions('previousCenter', ['prev_no', 'prev_yes']);
 }
 
-document.getElementById('registrationForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const fullName = document.getElementById('fullName').value.trim();
-    const gender = document.getElementById('gender').value;
-    const age = document.getElementById('age').value.trim();
-    const birthDate = document.getElementById('birthDate').value;
-    const address = document.getElementById('address').value.trim();
-    const education = document.getElementById('currentEducation').value;
-    const memorizationLevel = document.getElementById('memorizationLevel').value;
-    const readingLevel = document.getElementById('readingLevel').value;
-    const previousCenter = document.getElementById('previousCenter').value;
-    const parentName = document.getElementById('parentName').value.trim();
-    const parentRelation = document.getElementById('parentRelation').value;
-    const parentPhone = document.getElementById('parentPhone').value.trim();
-    const branch = document.getElementById('branch').value;
-    const preferredTime = document.getElementById('preferredTime').value;
-    const studentPhone = document.getElementById('studentPhone').value.trim();
-    const notes = document.getElementById('notes').value.trim();
-    const isArabic = currentLang === 'ar';
-    let formattedDate = 'غير محدد';
-    if (birthDate) {
-        const date = new Date(birthDate);
-        formattedDate = date.toLocaleDateString(isArabic ? 'ar-IQ' : 'ckb-IQ', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+// ==========================================
+// 3. إرسال النموذج إلى واتساب (Form Submission)
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('registrationForm');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const getVal = id => document.getElementById(id)?.value.trim() || '';
+            const fullName = getVal('fullName');
+            const gender = getVal('gender');
+            const age = getVal('age');
+            const birthDate = getVal('birthDate');
+            const address = getVal('address');
+            const education = getVal('currentEducation');
+            const memorizationLevel = getVal('memorizationLevel');
+            const readingLevel = getVal('readingLevel');
+            const previousCenter = getVal('previousCenter');
+            const parentName = getVal('parentName');
+            const parentRelation = getVal('parentRelation');
+            const parentPhone = getVal('parentPhone');
+            const branch = getVal('branch');
+            const preferredTime = getVal('preferredTime');
+            const studentPhone = getVal('studentPhone');
+            const notes = getVal('notes');
+            
+            const isArabic = currentLang === 'ar';
+            let formattedDate = 'غير محدد';
+            
+            if (birthDate) {
+                const date = new Date(birthDate);
+                formattedDate = date.toLocaleDateString(isArabic ? 'ar-IQ' : 'ckb-IQ', {
+                    year: 'numeric', month: 'long', day: 'numeric'
+                });
+            }
+
+            const defaultText = isArabic ? 'غير محدد' : 'نییە';
+            
+            const message = isArabic ? 
+                `*طلب تسجيل طالب جديد*\n━━━━━━━━━━━━━━━━━━━━\n\n👤 *معلومات الطالب:*\n• الاسم: ${fullName}\n• الجنس: ${gender}\n• العمر: ${age} سنة\n• تاريخ الميلاد: ${formattedDate}\n• العنوان: ${address || defaultText}\n• المستوى الدراسي: ${education || defaultText}\n\n📖 *مستوى الحفظ:*\n• مستوى الحفظ: ${memorizationLevel}\n• مستوى التلاوة: ${readingLevel || defaultText}\n• سبق له التعلم: ${previousCenter}\n\n👨‍👩‍👦 *معلومات ولي الأمر:*\n• الاسم: ${parentName}\n• الصلة: ${parentRelation}\n• الهاتف: ${parentPhone}\n\n📍 *معلومات إضافية:*\n• الفرع: ${branch}\n• الوقت المفضل: ${preferredTime || defaultText}\n• هاتف الطالب: ${studentPhone || 'غير متوفر'}\n• ملاحظات: ${notes || 'لا يوجد'}\n\n━━━━━━━━━━━━━━━━━━━━\n📅 تاريخ الطلب: ${new Date().toLocaleDateString('ar-IQ')}` :
+                `*داواکاری تۆمارکردنی قوتابی نوێ*\n━━━━━━━━━━━━━━━━━━━━\n\n👤 *زانیاری قوتابی:*\n• ناو: ${fullName}\n• ڕەگەز: ${gender}\n• تەمەن: ${age} ساڵ\n• بەرواری لەدایکبوون: ${formattedDate}\n• ناونیشان: ${address || defaultText}\n• ئاستی خوێندن: ${education || defaultText}\n\n📖 *ئاستی لەبەرکردن:*\n• ئاستی لەبەرکردن: ${memorizationLevel}\n• ئاستی خوێندنەوە: ${readingLevel || defaultText}\n• پێشتر فێربووە: ${previousCenter}\n\n👨‍👩‍👦 *زانیاری باوک/دایک:*\n• ناو: ${parentName}\n• پەیوەندی: ${parentRelation}\n• تەلەفۆن: ${parentPhone}\n\n📍 *زانیاری زیاتر:*\n• لق: ${branch}\n• کاتی هەڵبژێردراو: ${preferredTime || defaultText}\n• تەلەفۆنی قوتابی: ${studentPhone || defaultText}\n• تێبینی: ${notes || defaultText}\n\n━━━━━━━━━━━━━━━━━━━━\n📅 بەرواری داواکاری: ${new Date().toLocaleDateString('ckb-IQ')}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappNumber = '9647767709000';
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
         });
     }
-    const message = isArabic ? 
-        `*طلب تسجيل طالب جديد*\n━━━━━━━━━━━━━━━━━━━━\n\n👤 *معلومات الطالب:*\n• الاسم: ${fullName}\n• الجنس: ${gender}\n• العمر: ${age} سنة\n• تاريخ الميلاد: ${formattedDate}\n• العنوان: ${address || 'غير محدد'}\n• المستوى الدراسي: ${education || 'غير محدد'}\n\n📖 *مستوى الحفظ:*\n• مستوى الحفظ: ${memorizationLevel}\n• مستوى التلاوة: ${readingLevel || 'غير محدد'}\n• سبق له التعلم: ${previousCenter}\n\n👨👩‍👦 *معلومات ولي الأمر:*\n• الاسم: ${parentName}\n• الصلة: ${parentRelation}\n• الهاتف: ${parentPhone}\n\n📍 *معلومات إضافية:*\n• الفرع: ${branch}\n• الوقت المفضل: ${preferredTime || 'غير محدد'}\n• هاتف الطالب: ${studentPhone || 'غير متوفر'}\n• ملاحظات: ${notes || 'لا يوجد'}\n\n━━━━━━━━━━━━━━━━━━━━\n📅 تاريخ الطلب: ${new Date().toLocaleDateString('ar-IQ')}` :
-        `*داواکاری تۆمارکردنی قوتابی نوێ*\n━━━━━━━━━━━━━━━━━━━━\n\n *زانیاری قوتابی:*\n• ناو: ${fullName}\n• ڕەگەز: ${gender}\n• تەمەن: ${age} ساڵ\n• بەرواری لەدایکبوون: ${formattedDate}\n• ناونیشان: ${address || 'نییە'}\n• ئاستی خوێندن: ${education || 'نییە'}\n\n📖 *ئاستی لەبەرکردن:*\n• ئاستی لەبەرکردن: ${memorizationLevel}\n• ئاستی خوێندنەوە: ${readingLevel || 'نییە'}\n• پێشتر فێربووە: ${previousCenter}\n\n👨‍👩‍ *زانیاری باوک/دایک:*\n• ناو: ${parentName}\n• پەیوەندی: ${parentRelation}\n• تەلەفۆن: ${parentPhone}\n\n📍 *زانیاری زیاتر:*\n• لق: ${branch}\n• کاتی هەڵبژێردراو: ${preferredTime || 'نییە'}\n• تەلەفۆنی قوتابی: ${studentPhone || 'نییە'}\n• تێبینی: ${notes || 'نییە'}\n\n━━━━━━━━━━━━━━━━━━━━\n📅 بەرواری داواکاری: ${new Date().toLocaleDateString('ckb-IQ')}`;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = '9647767709000';
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
 });
 
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
+// ==========================================
+// 4. حركات التمرير والظهور (Scroll Animations)
+// ==========================================
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // تحسين الأداء: إيقاف المراقبة بعد الظهور
         }
     });
 }, observerOptions);
 
-document.querySelectorAll('.program-card, .stat-item, .location-item, .contact-card, .mission-card').forEach(el => {
+document.querySelectorAll('.program-card, .stat-item, .location-item, .contact-card, .mission-card, .about-img').forEach(el => {
     el.classList.add('fade-in');
     observer.observe(el);
 });
 
+// ==========================================
+// 5. التمرير السلس وإغلاق القائمة (Smooth Scroll)
+// ==========================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const target = document.querySelector(targetId);
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // إغلاق القائمة المتنقلة عند النقر على رابط
             const navUl = document.querySelector('nav ul');
             if (navUl && navUl.classList.contains('active')) {
                 navUl.classList.remove('active');
@@ -492,12 +480,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// ==========================================
+// 6. التحقق من صحة النموذج (Form Validation UI)
+// ==========================================
 document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(input => {
     input.addEventListener('blur', function() {
         if (this.hasAttribute('required') && !this.value.trim()) {
             this.style.borderColor = '#e74c3c';
         } else {
-            this.style.borderColor = '#E8E8F0';
+            this.style.borderColor = 'var(--border-light)';
         }
     });
     input.addEventListener('focus', function() {
@@ -505,9 +496,12 @@ document.querySelectorAll('.form-group input, .form-group select, .form-group te
     });
 });
 
+// ==========================================
+// 7. عداد الأرقام المتحرك (Counter Animation)
+// ==========================================
 function animateCounter(element, target) {
     let current = 0;
-    const increment = target / 50;
+    const increment = target / 60;
     const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
@@ -516,7 +510,7 @@ function animateCounter(element, target) {
         } else {
             element.textContent = '+' + Math.floor(current);
         }
-    }, 30);
+    }, 25);
 }
 
 const statsObserver = new IntersectionObserver((entries) => {
@@ -530,52 +524,95 @@ const statsObserver = new IntersectionObserver((entries) => {
                     animateCounter(stat, target);
                 }
             });
+            statsObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.5 });
+}, { threshold: 0.3 });
 
 const statsSection = document.querySelector('.stats');
-if (statsSection) {
-    statsObserver.observe(statsSection);
-}
+if (statsSection) statsObserver.observe(statsSection);
 
+// ==========================================
+// 8. تأثير تحميل الصفحة (Page Load Animation)
+// ==========================================
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s';
-    setTimeout(() => {
+    document.body.style.transition = 'opacity 0.6s ease';
+    requestAnimationFrame(() => {
         document.body.style.opacity = '1';
-    }, 100);
+    });
 });
 
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', () => {
-        const navUl = document.getElementById('navMenu');
-        if (navUl) {
-            navUl.classList.toggle('active');
+// ==========================================
+// 9. القائمة المتنقلة (Mobile Menu)
+// ==========================================
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navUl = document.querySelector('nav ul');
+
+if (mobileMenuBtn && navUl) {
+    mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navUl.classList.toggle('active');
+    });
+
+    // إغلاق القائمة عند النقر خارجها
+    document.addEventListener('click', (e) => {
+        if (navUl.classList.contains('active') && !navUl.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            navUl.classList.remove('active');
+        }
+    });
+
+    // إغلاق القائمة عند تغيير حجم الشاشة إلى وضع سطح المكتب
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navUl.classList.remove('active');
         }
     });
 }
 
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-        const navUl = document.getElementById('navMenu');
-        if (navUl) {
-            navUl.classList.remove('active');
-        }
-    }
-});
+// ==========================================
+// 10. دمج محتوى لوحة التحكم (CMS Content Fetch)
+// ==========================================
+async function loadCMSContent() {
+    try {
+        const response = await fetch('/assets/data/site-content.json');
+        if (!response.ok) throw new Error('File not found');
+        const data = await response.json();
 
-document.addEventListener('click', (e) => {
-    const navUl = document.getElementById('navMenu');
-    const menuBtn = document.getElementById('mobileMenuBtn');
-    if (navUl && navUl.classList.contains('active')) {
-        if (!navUl.contains(e.target) && !menuBtn.contains(e.target)) {
-            navUl.classList.remove('active');
+        // تحديث النصوص إذا كانت موجودة في ملف JSON
+        if (data.hero_title) {
+            const el = document.querySelector('[data-i18n="hero_title"]');
+            if (el) el.textContent = data.hero_title;
         }
+        if (data.hero_desc) {
+            const el = document.querySelector('[data-i18n="hero_desc"]');
+            if (el) el.textContent = data.hero_desc;
+        }
+        if (data.phone_main) {
+            const el = document.querySelector('a[href="tel:07767709000"]');
+            if (el) el.textContent = data.phone_main;
+        }
+
+        // تحديث الصور إذا كانت موجودة في ملف JSON
+        if (data.hero_image) {
+            const el = document.querySelector('.hero-image img');
+            if (el) el.src = data.hero_image;
+        }
+        if (data.about_main_image) {
+            const el = document.querySelector('.about-img.large img');
+            if (el) el.src = data.about_main_image;
+        }
+
+        console.log("✅ تم تحميل محتوى لوحة التحكم بنجاح");
+    } catch (error) {
+        // فشل طبيعي في البداية إذا لم يتم إنشاء ملف JSON بعد، لا يظهر خطأ للمستخدم
+        console.log("ℹ️ جاري استخدام المحتوى الافتراضي (لم يتم العثور على ملف بيانات CMS)");
     }
-});
+}
+
+// استدعاء دالة CMS بعد تحميل الصفحة
+document.addEventListener('DOMContentLoaded', loadCMSContent);
 
 console.log('✅ Peshawa Organization Website Loaded Successfully!');
-console.log(' Contact: 0776 770 9000');
-console.log(' Locations: Kalar & Rizgari');
+console.log('📞 Contact: 0776 770 9000');
+console.log('📍 Locations: Kalar & Rizgari');

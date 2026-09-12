@@ -1,0 +1,95 @@
+backend:
+  name: git-gateway
+  branch: main # أو master حسب فرع مشروعك
+
+# مجلد حفظ الصور الجديدة
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+# واجهة المستخدم للوحة التحكم
+locale: "ar"
+site_url: "/"
+display_url: "/"
+
+# collections: هنا نحدد الأقسام التي يمكن تعديلها بدون لمس الكود
+collections:
+  - name: "site_settings"
+    label: "إعدادات الموقع العامة"
+    editor:
+      preview: false
+    files:
+      - name: "contact_info"
+        label: "معلومات الاتصال والعناوين"
+        file: "assets/data/site-content.json"
+        fields:
+          - label: "رقم الهاتف الرئيسي"
+            name: "phone_main"
+            widget: "string"
+            hint: "مثال: 0776 770 9000"
+          - label: "رقم الهاتف الثانوي"
+            name: "phone_secondary"
+            widget: "string"
+            hint: "مثال: 0776 700 5050"
+          - label: "عنوان فرع كلار"
+            name: "address_kalar"
+            widget: "string"
+          - label: "عنوان فرع رزكاري"
+            name: "address_rizgari"
+            widget: "string"
+          - label: "رابط تليجرام"
+            name: "telegram_link"
+            widget: "string"
+          - label: "رابط فيسبوك"
+            name: "facebook_link"
+            widget: "string"
+
+  - name: "hero_section"
+    label: "القسم الرئيسي (Hero)"
+    editor:
+      preview: false
+    files:
+      - name: "hero_content"
+        label: "محتوى الواجهة الرئيسية"
+        file: "assets/data/site-content.json"
+        fields:
+          - label: "العنوان الرئيسي"
+            name: "hero_title"
+            widget: "string"
+          - label: "الوصف الفرعي"
+            name: "hero_desc"
+            widget: "text"
+          - label: "صورة الخلفية الرئيسية"
+            name: "hero_image"
+            widget: "image"
+            hint: "الحجم الموصى به: 1200x800 بكسل"
+          - label: "نص زر التسجيل"
+            name: "hero_btn_primary"
+            widget: "string"
+          - label: "نص زر المزيد"
+            name: "hero_btn_secondary"
+            widget: "string"
+
+  - name: "about_section"
+    label: "قسم من نحن"
+    editor:
+      preview: false
+    files:
+      - name: "about_content"
+        label: "محتوى من نحن"
+        file: "assets/data/site-content.json"
+        fields:
+          - label: "العنوان"
+            name: "about_title"
+            widget: "string"
+          - label: "الفقرة الأولى"
+            name: "about_p1"
+            widget: "text"
+          - label: "الفقرة الثانية"
+            name: "about_p2"
+            widget: "text"
+          - label: "صورة رئيسية عن المركز"
+            name: "about_main_image"
+            widget: "image"
+          - label: "صورة الطلاب"
+            name: "about_students_image"
+            widget: "image"
