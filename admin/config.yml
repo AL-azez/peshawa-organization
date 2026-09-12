@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+locale: "ar"
+
+collections:
+  - name: "pages"
+    label: "الصفحات"
+    files:
+      - name: "home"
+        label: "الصفحة الرئيسية"
+        file: "index.html"
+        fields:
+          - { label: "العنوان", name: "title", widget: "string" }
+          - { label: "المحتوى", name: "body", widget: "markdown" }
