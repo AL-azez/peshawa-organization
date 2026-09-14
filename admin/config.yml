@@ -1,0 +1,547 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# إعدادات الوسائط (الصور)
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+# إعدادات الواجهة
+locale: "ar"
+site_url: "/"
+display_url: "/"
+
+# الأقسام القابلة للتحرير
+collections:
+  # ================================
+  # 1. الإعدادات العامة
+  # ================================
+  - name: "general_settings"
+    label: "⚙️ الإعدادات العامة"
+    editor:
+      preview: false
+    files:
+      - name: "contact_info"
+        label: "📞 معلومات الاتصال"
+        file: "admin/site-content.json"
+        fields:
+          - label: "رقم الهاتف الرئيسي"
+            name: "phone_main"
+            widget: "string"
+            default: "0776 770 9000"
+          - label: "رقم الهاتف الثانوي"
+            name: "phone_secondary"
+            widget: "string"
+            default: "0776 700 5050"
+          - label: "رابط تليجرام"
+            name: "telegram_link"
+            widget: "string"
+            default: "https://t.me/peshawa_organization"
+          - label: "رابط فيسبوك"
+            name: "facebook_link"
+            widget: "string"
+            default: "https://www.facebook.com/share/r/1Cc3skbY5M/"
+          - label: "عنوان فرع كلار"
+            name: "address_kalar"
+            widget: "string"
+            default: "قەزای کەلار"
+          - label: "عنوان فرع رزكاري"
+            name: "address_rizgari"
+            widget: "string"
+            default: "قەزای ڕزگاری"
+
+      - name: "site_stats"
+        label: " الإحصائيات والأرقام"
+        file: "admin/site-content.json"
+        fields:
+          - label: "عدد الطلاب"
+            name: "stat_students"
+            widget: "number"
+            default: 500
+            min: 0
+          - label: "عدد الحفاظ"
+            name: "stat_hafiz"
+            widget: "number"
+            default: 150
+            min: 0
+          - label: "عدد المعلمين"
+            name: "stat_teachers"
+            widget: "number"
+            default: 20
+            min: 0
+          - label: "عدد الدورات"
+            name: "stat_courses"
+            widget: "number"
+            default: 500
+            min: 0
+          - label: "عدد الفروع"
+            name: "stat_branches"
+            widget: "number"
+            default: 2
+            min: 0
+          - label: "سنة التأسيس"
+            name: "stat_founded"
+            widget: "number"
+            default: 2023
+            min: 2000
+            max: 2100
+
+  # ================================
+  # 2. القسم الرئيسي (Hero)
+  # ================================
+  - name: "hero_section"
+    label: "🏠 الواجهة الرئيسية"
+    editor:
+      preview: false
+    files:
+      - name: "hero_content"
+        label: "محتوى الواجهة"
+        file: "admin/site-content.json"
+        fields:
+          - label: "العنوان الرئيسي"
+            name: "hero_title"
+            widget: "string"
+            default: "گەشەپێدانی بەهرەی منداڵان بە قورئان و مەقامات"
+          - label: "الوصف"
+            name: "hero_desc"
+            widget: "text"
+            default: "ناوەندێکی زانستی و پەروەردەیی تایبەت بە فێرکردنی قورئانی پیرۆز، تجوید، و مەقامات بۆ منداڵان و نەوجەوانان لە کەلار و ڕزگاری"
+          - label: "صورة المبنى"
+            name: "hero_image"
+            widget: "image"
+            default: "assets/images/hero-building.jpg"
+            hint: "الحجم الموصى به: 1200x800 بكسل"
+            media_library:
+              config:
+                max_file_size: 5242880  # 5MB
+          - label: "نص زر التسجيل"
+            name: "hero_btn_primary"
+            widget: "string"
+            default: "تۆمارکردن ئێستا"
+          - label: "نص زر المزيد"
+            name: "hero_btn_secondary"
+            widget: "string"
+            default: "زیاتر بزانە"
+
+  # ================================
+  # 3. قسم من نحن (About)
+  # ================================
+  - name: "about_section"
+    label: "ℹ️ من نحن"
+    editor:
+      preview: false
+    files:
+      - name: "about_content"
+        label: "محتوى من نحن"
+        file: "admin/site-content.json"
+        fields:
+          - label: "العنوان الرئيسي"
+            name: "about_title"
+            widget: "string"
+            default: "دەربارەی ڕێکخراوی پێشەوا"
+          - label: "العنوان الفرعي"
+            name: "about_subtitle"
+            widget: "string"
+            default: "دەزگایەکی خێرخوازی و پەروەردەیی"
+          - label: "العنوان الداخلي"
+            name: "about_heading"
+            widget: "string"
+            default: "ناوەندێکی زانستی و پەروەردەیی"
+          - label: "الفقرة الأولى"
+            name: "about_p1"
+            widget: "text"
+            default: "ڕێکخراوی پێشەوا بۆ کاری مرۆیی لە ٧/٩/٢٢٣ دامەزراوە، ناوەندێکی زانستی و پەروەردەییە تایبەت بە فێرکردنی قورئانی پیرۆز و گەشەپێدانی بەهرەی منداڵان و نەوجەوانان."
+          - label: "الفقرة الثانية"
+            name: "about_p2"
+            widget: "text"
+            default: "ئامانجمان پەروەردەکردنی نەوەیەکی قورئانییە کە بتوانێت قورئان بە ڕاستی بخوێنێتەوە و لەبەری بکات، هەروەها فێری مەقامات و تجوید بێت."
+          - label: "صورة المبنى الرئيسي"
+            name: "about_main_image"
+            widget: "image"
+            default: "assets/images/about-main.jpg"
+          - label: "صورة الطلاب"
+            name: "about_students_image"
+            widget: "image"
+            default: "assets/images/about-students.jpg"
+          - label: "صورة الصف"
+            name: "about_class_image"
+            widget: "image"
+            default: "assets/images/about-class.jpg"
+          - label: "الميزة 1"
+            name: "feat1"
+            widget: "string"
+            default: "مامۆستایانی شارەزا و پسپۆڕ"
+          - label: "الميزة 2"
+            name: "feat2"
+            widget: "string"
+            default: "بەرنامەی زانستی و ڕێکخراو"
+          - label: "الميزة 3"
+            name: "feat3"
+            widget: "string"
+            default: "کەشێکی گونجاو و ئارام"
+          - label: "الميزة 4"
+            name: "feat4"
+            widget: "string"
+            default: "دوو لق لە کەلار و ڕزگاری"
+
+  # ================================
+  # 4. قسم الأهداف (Mission) - 14 بطاقة
+  # ================================
+  - name: "mission_section"
+    label: "🎯 الأهداف والرسالة"
+    editor:
+      preview: false
+    files:
+      - name: "mission_content"
+        label: "بطاقات الأهداف"
+        file: "admin/site-content.json"
+        fields:
+          - label: "العنوان الرئيسي"
+            name: "mission_title"
+            widget: "string"
+            default: "ئامانج و ڕێبازی دەزگاکەمان"
+          - label: "العنوان الفرعي"
+            name: "mission_subtitle"
+            widget: "string"
+            default: "ئەو بنەمایانەی کە ڕێکخراوی پێشەوا بەدوایدا دەگەڕێت"
+          # البطاقات الـ 14
+          - label: "الهدف 1 - العنوان"
+            name: "mission_1_title"
+            widget: "string"
+            default: "خزمەتکردنی قورئانی پیرۆز"
+          - label: "الهدف 1 - الوصف"
+            name: "mission_1_text"
+            widget: "text"
+            default: "ئەم دەزگایە دامەزراوەیەکی خێرخوازی، پەروەردەیی و فێرکارییە، کە ئامانجی سەرەکی خزمەتکردنی پەڕتووکی خودای گەورە (قورئانی پیرۆز)ە."
+          
+          - label: "الهدف 2 - العنوان"
+            name: "mission_2_title"
+            widget: "string"
+            default: "گەیاندن بە هەموو توێژەکان"
+          - label: "الهدف 2 - الوصف"
+            name: "mission_2_text"
+            widget: "text"
+          
+          - label: "الهدف 3 - العنوان"
+            name: "mission_3_title"
+            widget: "string"
+            default: "ڕێبازی زانستی و هاوچەرخ"
+          - label: "الهدف 3 - الوصف"
+            name: "mission_3_text"
+            widget: "text"
+          
+          - label: "الهدف 4 - العنوان"
+            name: "mission_4_title"
+            widget: "string"
+            default: "وانەی هەمەجۆری قورئان"
+          - label: "الهدف 4 - الوصف"
+            name: "mission_4_text"
+            widget: "text"
+          
+          - label: "الهدف 5 - العنوان"
+            name: "mission_5_title"
+            widget: "string"
+            default: "میانڕەوی و دووری لە توندڕەوی"
+          - label: "الهدف 5 - الوصف"
+            name: "mission_5_text"
+            widget: "text"
+          
+          - label: "الهدف 6 - العنوان"
+            name: "mission_6_title"
+            widget: "string"
+            default: "سەرپەرشتی زانایان"
+          - label: "الهدف 6 - الوصف"
+            name: "mission_6_text"
+            widget: "text"
+          
+          - label: "الهدف 7 - العنوان"
+            name: "mission_7_title"
+            widget: "string"
+            default: "سیستمی تەحفیزی زانستی"
+          - label: "الهدف 7 - الوصف"
+            name: "mission_7_text"
+            widget: "text"
+          
+          - label: "الهدف 8 - العنوان"
+            name: "mission_8_title"
+            widget: "string"
+            default: "وانەی هاندەر و پاڵنەر"
+          - label: "الهدف 8 - الوصف"
+            name: "mission_8_text"
+            widget: "text"
+          
+          - label: "الهدف 9 - العنوان"
+            name: "mission_9_title"
+            widget: "string"
+            default: "پەرەپێدانی مرۆیی و دەروونی"
+          - label: "الهدف 9 - الوصف"
+            name: "mission_9_text"
+            widget: "text"
+          
+          - label: "الهدف 10 - العنوان"
+            name: "mission_10_title"
+            widget: "string"
+            default: "سیستمی خەڵات و هاندان"
+          - label: "الهدف 10 - الوصف"
+            name: "mission_10_text"
+            widget: "text"
+          
+          - label: "الهدف 11 - العنوان"
+            name: "mission_11_title"
+            widget: "string"
+            default: "فێربوونی زمانی عەرەبی"
+          - label: "الهدف 11 - الوصف"
+            name: "mission_11_text"
+            widget: "text"
+          
+          - label: "الهدف 12 - العنوان"
+            name: "mission_12_title"
+            widget: "string"
+            default: "پۆدکاست و ڤیدیۆی هاندەر"
+          - label: "الهدف 12 - الوصف"
+            name: "mission_12_text"
+            widget: "text"
+          
+          - label: "الهدف 13 - العنوان"
+            name: "mission_13_title"
+            widget: "string"
+            default: "چالاکی دەرەکی و گەشت"
+          - label: "الهدف 13 - الوصف"
+            name: "mission_13_text"
+            widget: "text"
+          
+          - label: "الهدف 14 - العنوان"
+            name: "mission_14_title"
+            widget: "string"
+            default: "مۆڵەتی نێودەوڵەتی (الإجازة)"
+          - label: "الهدف 14 - الوصف"
+            name: "mission_14_text"
+            widget: "text"
+
+  # ================================
+  # 5. قسم البرامج (Programs) - 6 بطاقات
+  # ================================
+  - name: "programs_section"
+    label: " البرامج والدورات"
+    editor:
+      preview: false
+    files:
+      - name: "programs_content"
+        label: "بطاقات البرامج"
+        file: "admin/site-content.json"
+        fields:
+          - label: "العنوان الرئيسي"
+            name: "programs_title"
+            widget: "string"
+            default: "بەشە زانستییەکان"
+          - label: "العنوان الفرعي"
+            name: "programs_subtitle"
+            widget: "string"
+            default: "بەرنامە جیاوازەکانمان بۆ هەموو تەمەنەکان"
+          
+          # البرنامج 1
+          - label: "البرنامج 1 - العنوان"
+            name: "prog1_title"
+            widget: "string"
+            default: "خولی لەبەرکردنی قورئان"
+          - label: "البرنامج 1 - الوصف"
+            name: "prog1_desc"
+            widget: "text"
+            default: "بەرنامەیەکی زانستی و ڕێکخراو بۆ لەبەرکردنی قورئانی پیرۆز بە شێوەیەکی تەواو و ڕاست"
+          
+          # البرنامج 2
+          - label: "البرنامج 2 - العنوان"
+            name: "prog2_title"
+            widget: "string"
+            default: "فێرکردنی مەقامات"
+          - label: "البرنامج 2 - الوصف"
+            name: "prog2_desc"
+            widget: "text"
+          
+          # البرنامج 3
+          - label: "البرنامج 3 - العنوان"
+            name: "prog3_title"
+            widget: "string"
+            default: "خولی منداڵان (4-6 ساڵ)"
+          - label: "البرنامج 3 - الوصف"
+            name: "prog3_desc"
+            widget: "text"
+          
+          # البرنامج 4
+          - label: "البرنامج 4 - العنوان"
+            name: "prog4_title"
+            widget: "string"
+            default: "تجوید و قیرائەت"
+          - label: "البرنامج 4 - الوصف"
+            name: "prog4_desc"
+            widget: "text"
+          
+          # البرنامج 5
+          - label: "البرنامج 5 - العنوان"
+            name: "prog5_title"
+            widget: "string"
+            default: "خولی زستانە و هاوینە"
+          - label: "البرنامج 5 - الوصف"
+            name: "prog5_desc"
+            widget: "text"
+          
+          # البرنامج 6
+          - label: "البرنامج 6 - العنوان"
+            name: "prog6_title"
+            widget: "string"
+            default: "ئامادەکاری بۆ پێشبڕکێ"
+          - label: "البرنامج 6 - الوصف"
+            name: "prog6_desc"
+            widget: "text"
+
+  # ================================
+  # 6. قسم الموقع (Location)
+  # ================================
+  - name: "location_section"
+    label: "📍 الموقع والفروع"
+    editor:
+      preview: false
+    files:
+      - name: "location_content"
+        label: "محتوى الموقع"
+        file: "admin/site-content.json"
+        fields:
+          - label: "العنوان الرئيسي"
+            name: "location_title"
+            widget: "string"
+            default: "شوێن و ناونیشانەکان"
+          - label: "العنوان الفرعي"
+            name: "location_subtitle"
+            widget: "string"
+            default: "دوو لق بۆ خزمەتکردنی باشتر"
+          - label: "عنوان الفروع"
+            name: "branches_title"
+            widget: "string"
+            default: "لقەکانمان"
+          - label: "اسم الفرع 1"
+            name: "branch1_name"
+            widget: "string"
+            default: "مەقری سەرەکی - کەلار"
+          - label: "عنوان الفرع 1"
+            name: "branch1_addr"
+            widget: "string"
+            default: "قەزای کەلار"
+          - label: "اسم الفرع 2"
+            name: "branch2_name"
+            widget: "string"
+            default: "لقی دووەم - ڕزگاری"
+          - label: "عنوان الفرع 2"
+            name: "branch2_addr"
+            widget: "string"
+            default: "قەزای ڕزگاری"
+          - label: "عنوان الخريطة"
+            name: "map_title"
+            widget: "string"
+            default: "نەخشەی شوێن"
+          - label: "وصف الخريطة"
+            name: "map_desc"
+            widget: "string"
+            default: "ئێمە لە نزیک جوت سایدی چەوت هەزار"
+          - label: "صورة الخريطة"
+            name: "location_map_image"
+            widget: "image"
+            default: "assets/images/location-map.jpg"
+
+  # ================================
+  # 7. قسم التسجيل (Registration)
+  # ================================
+  - name: "registration_section"
+    label: "📝 نموذج التسجيل"
+    editor:
+      preview: false
+    files:
+      - name: "registration_content"
+        label: "محتوى نموذج التسجيل"
+        file: "admin/site-content.json"
+        fields:
+          - label: "العنوان الرئيسي"
+            name: "reg_title"
+            widget: "string"
+            default: "فۆڕمی تۆمارکردنی قوتابی"
+          - label: "الوصف"
+            name: "reg_desc"
+            widget: "string"
+            default: "تکایە زانیارییەکان بە وردی پڕ بکەرەوە بۆ تۆمارکردن"
+          - label: "عنوان قسم الطالب"
+            name: "section_student"
+            widget: "string"
+            default: "زانیاری قوتابی"
+          - label: "عنوان قسم الحفظ"
+            name: "section_memorization"
+            widget: "string"
+            default: "ئاستی لەبەرکردن و خوێندنەوە"
+          - label: "عنوان قسم الوالدين"
+            name: "section_parent"
+            widget: "string"
+            default: "زانیاری باوک یان دایک"
+          - label: "عنوان قسم إضافي"
+            name: "section_extra"
+            widget: "string"
+            default: "زانیاری زیاتر"
+          - label: "ملاحظة النموذج"
+            name: "form_note"
+            widget: "text"
+            default: "* دوای کلیککردن، زانیارییەکان ڕاستەوخۆ دەنێردرێن بۆ ژمارە 07767709000 لە ڕێگەی واتسئەپ"
+
+  # ================================
+  # 8. قسم التواصل (Contact)
+  # ================================
+  - name: "contact_section"
+    label: "📧 صفحة التواصل"
+    editor:
+      preview: false
+    files:
+      - name: "contact_content"
+        label: "محتوى التواصل"
+        file: "admin/site-content.json"
+        fields:
+          - label: "العنوان الرئيسي"
+            name: "contact_title"
+            widget: "string"
+            default: "پەیوەندی کردن"
+          - label: "الوصف"
+            name: "contact_subtitle"
+            widget: "string"
+            default: "لە ڕێگەی چەندین ڕێگەوە دەتوانن پەیوەندیمان پێوە بکەن"
+          - label: "عنوان الهاتف"
+            name: "contact_phone_title"
+            widget: "string"
+            default: "تەلەفۆن"
+          - label: "عنوان تليجرام"
+            name: "contact_telegram_title"
+            widget: "string"
+            default: "تێلیگرام"
+          - label: "عنوان فيسبوك"
+            name: "contact_facebook_title"
+            widget: "string"
+            default: "فەیسبووک"
+          - label: "عنوان العنوان"
+            name: "contact_address_title"
+            widget: "string"
+            default: "ناونیشان"
+          - label: "النص الكامل للعنوان"
+            name: "contact_address"
+            widget: "text"
+            default: "کەلار و ڕزگاري\nهەرێمی کوردستان"
+
+  # ================================
+  # 9. التذييل (Footer)
+  # ================================
+  - name: "footer_section"
+    label: "🔻 التذييل (Footer)"
+    editor:
+      preview: false
+    files:
+      - name: "footer_content"
+        label: "محتوى التذييل"
+        file: "admin/site-content.json"
+        fields:
+          - label: "نص حقوق النشر"
+            name: "footer_text"
+            widget: "string"
+            default: "© 2026 ڕێکخراوی پێشەوا بۆ کاری مرۆیی - هەموو مافەکان پارێزراون"

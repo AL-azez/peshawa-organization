@@ -1,0 +1,32 @@
+{
+  "phone_main": "0776 770 9000",
+  "phone_secondary": "0776 700 5050",
+  "address_kalar": "قضاء كلار",
+  "address_rizgari": "قضاء رزكاري",
+  "telegram_link": "https://t.me/peshawa_organization",
+  "facebook_link": "https://www.facebook.com/share/r/1Cc3skbY5M/",
+  
+  "hero_title": "گەشەپێدانی بەهرەی منداڵان بە قورئان و مەقامات",
+  "hero_desc": "ناوەندێکی زانستی و پەروەردەیی تایبەت بە فێرکردنی قورئانی پیرۆز، تجوید، و مەقامات بۆ منداڵان و نەوجەوانان لە کەلار و ڕزگاری",
+  "hero_image": "/assets/images/hero-building.jpg",
+  "hero_btn_primary": "تۆمارکردن ئێستا",
+  "hero_btn_secondary": "زیاتر بزانە",
+  
+  "about_title": "دەربارەی ڕێکخراوی پێشەوا",
+  "about_subtitle": "دەزگایەکی خێرخوازی و پەروەردەیی",
+  "about_heading": "ناوەندێکی زانستی و پەروەردەیی",
+  "about_p1": "ڕێکخراوی پێشەوا بۆ کاری مرۆیی لە ١/٩/٢٠٢٣ دامەزراوە، ناوەندێکی زانستی و پەروەردەییە تایبەت بە فێرکردنی قورئانی پیرۆز و گەشەپێدانی بەهرەی منداڵان و نەوجەوانان.",
+  "about_p2": "ئامانجمان پەروەردەکردنی نەوەیەکی قورئانییە کە بتوانێت قورئان بە ڕاستی بخوێنێتەوە و لەبەری بکات، هەروەها فێری مەقامات و تجوید بێت.",
+  "about_main_image": "/assets/images/about-main.jpg",
+  "about_students_image": "/assets/images/about-students.jpg",
+  "about_class_image": "/assets/images/about-class.jpg",
+  
+  "feat1": "مامۆستایانی شارەزا و پسپۆڕ",
+  "feat2": "بەرنامەی زانستی و ڕێکخراو",
+  "feat3": "کەشێکی گونجاو و ئارام",
+  "feat4": "دوو لق لە کەلار و ڕزگاری",
+  
+  "location_map_image": "/assets/images/location-map.jpg",
+  "map_title": "نەخشەی شوێن",
+  "map_desc": "ئێمە لە نزیک جوت سایدی چەوت هەزار"
+}
